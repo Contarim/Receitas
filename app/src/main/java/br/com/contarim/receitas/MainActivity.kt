@@ -1,11 +1,13 @@
 package br.com.contarim.receitas
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,11 +23,11 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -39,7 +41,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ReceitasTheme {
-
+                InitialScreen()
                 }
             }
         }
@@ -50,6 +52,9 @@ fun InitialScreen(){
     Box(
         modifier = Modifier
             .fillMaxSize()
+            .background(
+                color = MaterialTheme.colorScheme.background
+            )
     ){
         Card(
             modifier = Modifier
@@ -62,7 +67,7 @@ fun InitialScreen(){
             ),
             colors = CardDefaults
                 .cardColors(
-                    containerColor = Color(0xFFED1459)
+                    containerColor = MaterialTheme.colorScheme.primary
                 )
         ){}
         Column(
@@ -89,7 +94,7 @@ fun InitialScreen(){
                 Text(
                     text = "RECEITAS ILIMITADAS",
                     fontSize = 24.sp,
-                    color = Color.Gray,
+                    color = MaterialTheme.colorScheme.secondary,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
@@ -97,7 +102,7 @@ fun InitialScreen(){
                     fontSize = 48.sp,
                     lineHeight = 48.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFFED1459),
+                    color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.padding(top = 8.dp, bottom = 16.dp)
                 )
                 Row{
@@ -105,11 +110,11 @@ fun InitialScreen(){
                         onClick = {},
                         colors = ButtonDefaults
                             .buttonColors(
-                                containerColor = Color(0xFFED1459)
+                                containerColor = MaterialTheme.colorScheme.primary
                             ),
                         border = BorderStroke(
                             width = 1.dp,
-                            color = Color(0xFFFFC107)
+                            color = MaterialTheme.colorScheme.tertiary
                         ),
                         modifier = Modifier
                             .size(width = 128.dp, height = 48.dp)
@@ -117,7 +122,7 @@ fun InitialScreen(){
                     ) {
                         Text(
                             text = "Entrar",
-                            color = Color(0xFFFFFFFF),
+                            color = MaterialTheme.colorScheme.onPrimary,
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold
                         )
@@ -127,18 +132,18 @@ fun InitialScreen(){
                         onClick = {},
                         colors = ButtonDefaults
                             .buttonColors(
-                                containerColor = Color(0xFFFFC107)
+                                containerColor = MaterialTheme.colorScheme.tertiary
                             ),
                         border = BorderStroke(
                             width = 1.dp,
-                            color = Color(0xFFED1459)
+                            color = MaterialTheme.colorScheme.primary
                         ),
                         modifier = Modifier
                             .size(width = 128.dp, height = 48.dp)
                     ) {
                         Text(
                             text = "Cadastrar",
-                            color = Color(0xFFED1459),
+                            color = MaterialTheme.colorScheme.onTertiary,
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold
                         )
@@ -157,14 +162,18 @@ fun InitialScreen(){
             ),
             colors = CardDefaults
                 .cardColors(
-                    containerColor = Color(0xFFED1459)
+                    containerColor = MaterialTheme.colorScheme.primary
                 )
         ){}
     }
 }
 
 @Composable
-@Preview(showBackground = true, showSystemUi = true)
+@Preview(
+    showBackground = true,
+    showSystemUi = true,
+    uiMode = Configuration.UI_MODE_NIGHT_YES
+    )
 fun InitialScreenPreview(){
     ReceitasTheme{
         InitialScreen()
